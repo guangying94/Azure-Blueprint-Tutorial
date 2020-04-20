@@ -38,7 +38,7 @@
         "vnetName": "[concat(parameters('localPrefix'),'-vnet')]",
         "workloadNSGName": "[concat(parameters('localPrefix'),'-workload-nsg')]",
         "workloadSubnetName": "[concat(parameters('localPrefix'),'-web-subnet')]",
-        "bastionNSGName": "bastion-nsg",
+        "bastionNSGName": "[concat(parameters('localPrefix'),'-bastion-nsg')]",
         "bastionName": "[concat(parameters('localPrefix'),'-bastion')]",
         "bastionPublicIPName": "[concat(parameters('localPrefix'),'-bastion-pip')]",
         "bastionSubnetName": "AzureBastionSubnet",
