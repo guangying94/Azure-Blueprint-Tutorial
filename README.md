@@ -16,6 +16,10 @@ This ARM template will deploy the following resources:
 1. Azure Bastion
 1. Azure Storage Account
 
+Here's the architecture diagram:
+
+![Diagram](/assets/diagram.png)
+
 ## Azure Policy
 
 The folder contains the following Azure Policy template:
