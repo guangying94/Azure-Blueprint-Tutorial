@@ -1,0 +1,32 @@
+{
+    "properties": {
+        "displayName": "No Application Gateway in X Vnet",
+        "description": "This policy ensure no Application Gateway within a particular VNET to avoid internet routable traffic.",
+        "parameters": {
+            "vnetId": {
+                "type": "string",
+                "metadata": {
+                    "description": "Resource Id of the VNET",
+                    "displayName": "VNET Id"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Network/applicationGateways/gatewayIPConfigurations[*].subnet.id",
+                        "like": "[concat(parameters('vNetId'),'*')]"
+                    },
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/applicationGateways"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "properties": {
+        "displayName": "No public IP on NIC",
+        "description": "This policy prevent associating public IP on NIC",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/networkInterfaces"
+                    },
+                    {
+                        "field": "Microsoft.Network/networkInterfaces/ipConfigurations[*].publicIPAddress",
+                        "exists": true
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}

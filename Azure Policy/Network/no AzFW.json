@@ -1,0 +1,32 @@
+{
+    "properties": {
+        "displayName": "No Azure Firewall in X Vnet",
+        "description": "This policy ensure no Azure Firewall within a particular VNET to avoid internet routable traffic.",
+        "parameters": {
+            "vnetId": {
+                "type": "string",
+                "metadata": {
+                    "description": "Resource Id of the VNET",
+                    "displayName": "VNET Id"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "Microsoft.Network/azureFirewalls/ipConfigurations[*].subnet.id",
+                        "like": "[concat(parameters('vNetId'),'*')]"
+                    },
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/azureFirewalls"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}
